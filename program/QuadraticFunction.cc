@@ -26,22 +26,26 @@ double QuadraticFunction::get() const {
 	return 0;
 }
 
-void QuadraticFunction::add(size_t i, double v) {
+void QuadraticFunction::add(std::string i, double v) {
 }
-void QuadraticFunction::set(size_t i, double v) {
+void QuadraticFunction::set(std::string i, double v) {
 }
-double QuadraticFunction::get(size_t i) const {
+double QuadraticFunction::get(std::string i) const {
 	return 0;
 }
 
-void QuadraticFunction::add(size_t i, size_t j, double v) {
+void QuadraticFunction::add(std::string i, std::string j, double v) {
 }
-void QuadraticFunction::set(size_t i, size_t j, double v) {
+void QuadraticFunction::set(std::string i, std::string j, double v) {
 }
-double QuadraticFunction::get(size_t i, size_t j) const {
+double QuadraticFunction::get(std::string i, std::string j) const {
 	return 0;
 }
 
 void QuadraticFunction::print(std::ostream & = std::cout) const {
 
+}
+
+IntMat2Double const & QuadraticFunction::getBilTerms() const {
+	return _bilinearTerms;
 }

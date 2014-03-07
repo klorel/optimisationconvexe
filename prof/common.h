@@ -15,9 +15,14 @@
 #include <vector>
 #include <map>
 #include <iostream>
+#include <cassert>
 
 typedef std::vector<double> Point;
 typedef std::map<size_t, double> Int2Double;
+
+typedef std::map<std::pair<size_t, size_t>, double> IntMat2Double;
+typedef std::map<std::string, size_t> Str2Int;
+typedef std::map<size_t, std::string> Int2Str;
 
 inline bool PrintCoeff(std::ostream & stream, double coeff) {
 	if (std::abs(coeff) > 1e-10) {

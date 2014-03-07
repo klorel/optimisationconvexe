@@ -9,25 +9,18 @@
 #define IQUADRATICFUNCTION_H_
 
 #include "common.h"
-#include "IFunction.h"
+#include "ILinearFunction.h"
 
-class IQuadraticFunction: public IFunction {
-
+class IQuadraticFunction: public ILinearFunction {
 public:
-	virtual void clear()= 0;
-	virtual void add(double v)= 0;
-	virtual void set(double v)= 0;
-	virtual double get() const= 0;
+	virtual void add(std::string i, std::string j, double v)= 0;
+	virtual void set(std::string i, std::string j, double v)= 0;
+	virtual double get(std::string i, std::string j) const = 0;
 
-	virtual void add(size_t i, double v)= 0;
-	virtual void set(size_t i, double v)= 0;
-	virtual double get(size_t i) const = 0;
+	virtual IntMat2Double const & getBilTerms() const = 0;
 
-	virtual void add(size_t i, size_t j, double v)= 0;
-	virtual void set(size_t i, size_t j, double v)= 0;
-	virtual double get(size_t i, size_t j) const = 0;
-
-	virtual void print(std::ostream &) const= 0;
+	virtual ~IQuadraticFunction() {
+	}
 };
 
 #endif /* IQUADRATICFUNCTION_H_ */

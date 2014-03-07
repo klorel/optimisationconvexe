@@ -8,33 +8,31 @@
 #ifndef LINEARFUNCTION_H_
 #define LINEARFUNCTION_H_
 
-#include "IFunction.h"
+#include "ILinearFunction.h"
 
-class LinearFunction: public IFunction {
+class LinearFunction: public ILinearFunction {
 public:
-	virtual size_t getN() const;
-	virtual size_t getM() const;
-
 	virtual double getValue(Point const & x) const;
 	virtual void getGradient(Point const & x, Point & result) const;
 public:
-	void clear();
-	void add(double v);
-	void set(double v);
-	double get() const;
+	virtual void clear();
+	virtual void add(double v);
+	virtual void set(double v);
+	virtual double get() const;
 
-	void add(size_t id, double v);
-	void set(size_t id, double v);
-	double get(size_t id) const;
+	virtual void add(std::string id, double v);
+	virtual void set(std::string id, double v);
+	virtual double get(std::string id) const;
 
-	void print(std::ostream &) const;
+	virtual void print(std::ostream &) const;
+	virtual Int2Double const & getLinearTerms() const;
 public:
 	LinearFunction();
 	virtual ~LinearFunction();
 private:
-	size_t _n;
 	double _cst;
-	Int2Double _coeff;
+	Int2Double _linearTerms;
+
 };
 
 inline std::ostream & operator<<(std::ostream & stream,

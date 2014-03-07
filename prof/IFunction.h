@@ -12,33 +12,30 @@
 
 class IFunction {
 public:
-	virtual size_t getN() const = 0;
-	virtual size_t getM() const = 0;
+	std::string getName(size_t id) const;
+	size_t getN() const;
+	size_t getId(std::string const &);
+	size_t getIdConst(std::string const &) const;
 
 	virtual double getValue(Point const & x) const = 0;
 	virtual void getGradient(Point const & x, Point & result) const = 0;
 
-	virtual bool isLinear() const {
-		return false;
-	}
-	virtual bool isQuadratic() const {
-		return false;
-	}
-	virtual bool isQuadraticSDP() const {
-		return false;
-	}
-	virtual bool isQuadraticSDN() const {
-		return false;
-	}
-	virtual bool isConvexe() const {
-		return false;
-	}
-	virtual bool isConcave() const {
-		return false;
-	}
+	virtual void print(std::ostream &) const = 0;
+	virtual void clear();
+
+	virtual bool isLinear() const;
+	virtual bool isQuadratic() const;
+	virtual bool isQuadraticSDP() const;
+	virtual bool isQuadraticSDN() const;
+	virtual bool isConvexe() const;
+	virtual bool isConcave() const;
 public:
 	IFunction();
 	virtual ~IFunction();
+private:
+	size_t _n;
+	Str2Int _ids;
+	Int2Str _names;
 };
 
 #endif /* IFUNCTION_H_ */

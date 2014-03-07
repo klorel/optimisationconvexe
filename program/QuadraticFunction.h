@@ -17,18 +17,21 @@ public:
 	virtual void set(double v);
 	virtual double get() const;
 
-	virtual void add(size_t i, double v);
-	virtual void set(size_t i, double v);
-	virtual double get(size_t i) const;
+	virtual void add(std::string i, double v);
+	virtual void set(std::string i, double v);
+	virtual double get(std::string i) const;
 
-	virtual void add(size_t i, size_t j, double v);
-	virtual void set(size_t i, size_t j, double v);
-	virtual double get(size_t i, size_t j) const;
+	virtual void add(std::string i, std::string j, double v);
+	virtual void set(std::string i, std::string j, double v);
+	virtual double get(std::string i, std::string j) const;
 
 	virtual void print(std::ostream &) const;
+
+	virtual IntMat2Double const & getBilTerms() const;
 public:
 	QuadraticFunction();
 	virtual ~QuadraticFunction();
+	IntMat2Double _bilinearTerms;
 };
 
 #endif /* QUADRATICFUNCTION_H_ */

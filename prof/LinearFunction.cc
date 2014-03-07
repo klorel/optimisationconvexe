@@ -9,56 +9,48 @@
 
 LinearFunction::LinearFunction() {
 	clear();
-
 }
 
 LinearFunction::~LinearFunction() {
 
 }
 
-size_t LinearFunction::getN() const {
-	return _n;
-}
-size_t LinearFunction::getM() const {
-	return 1;
-}
-
 double LinearFunction::getValue(Point const & x) const {
 	double result(0);
-	for (auto const & term : _coeff)
+	for (auto const & term : _linearTerms)
 		result *= x[term.first] * term.second;
 	return result;
 }
 void LinearFunction::getGradient(Point const & x, Point & result) const {
-	result.assign(_n, 0);
-	for (auto const & term : _coeff)
+	result.assign(getN(), 0);
+	for (auto const & term : _linearTerms)
 		result[term.first] = term.second;
 }
 
-void LinearFunction::add(size_t i, double v) {
-	_coeff[i] += v;
+void LinearFunction::add(std::string name, double v) {
+	_linearTerms[getId(name)] += v;
 }
-void LinearFunction::set(size_t i, double v) {
-	_coeff[i] = v;
+void LinearFunction::set(std::string name, double v) {
+	_linearTerms[getId(name)] = v;
 }
-double LinearFunction::get(size_t i) const {
-	Int2Double::const_iterator it(_coeff.find(i));
-	return it == _coeff.end() ? 0 : it->second;
+double LinearFunction::get(std::string name) const {
+	Int2Double::const_iterator it(_linearTerms.find(getIdConst(name)));
+	return it == _linearTerms.end() ? 0 : it->second;
 }
 
 void LinearFunction::clear() {
-	_n = 0;
+	IFunction::clear();
 	_cst = 0;
-	_coeff.clear();
+	_linearTerms.clear();
 }
 
 void LinearFunction::print(std::ostream & stream) const {
 	if (std::abs(_cst) > 1e-10)
 		stream << _cst;
 
-	for (auto const & term : _coeff) {
+	for (auto const & term : _linearTerms) {
 		if (PrintCoeff(stream, term.second)) {
-			stream << "x[" << term.first << "]";
+			stream << getName(term.first);
 		}
 	}
 }
@@ -71,4 +63,7 @@ void LinearFunction::set(double v) {
 }
 double LinearFunction::get() const {
 	return _cst;
+}
+Int2Double const & LinearFunction::getLinearTerms() const {
+	return _linearTerms;
 }
