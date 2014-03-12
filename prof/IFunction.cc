@@ -35,7 +35,7 @@ size_t IFunction::getId(std::string const & name) {
 	}
 
 }
-size_t IFunction::getIdConst(std::string const & name) const {
+size_t IFunction::getId(std::string const & name) const {
 	Str2Int::const_iterator it(_ids.find(name));
 	return it->second;
 
@@ -65,4 +65,17 @@ bool IFunction::isConvexe() const {
 }
 bool IFunction::isConcave() const {
 	return false;
+}
+
+double IFunction::getValue(Point const & x) const {
+	assert(false && "TO BE IMPLEMENTTED");
+	return 0;
+}
+void IFunction::getGradient(Point const & x, Point & result) const {
+	assert(false && "TO BE IMPLEMENTTED");
+}
+
+void IFunction::getHessian(Point const & x, QuadraticFunction & result) const {
+	assert(false && "TO BE IMPLEMENTTED");
+
 }

@@ -9,16 +9,17 @@
 #define IFUNCTION_H_
 
 #include "common.h"
-
+class QuadraticFunction;
 class IFunction {
 public:
 	std::string getName(size_t id) const;
 	size_t getN() const;
 	size_t getId(std::string const &);
-	size_t getIdConst(std::string const &) const;
+	size_t getId(std::string const &) const;
 
-	virtual double getValue(Point const & x) const = 0;
-	virtual void getGradient(Point const & x, Point & result) const = 0;
+	virtual double getValue(Point const & x) const ;
+	virtual void getGradient(Point const & x, Point & result) const;
+	virtual void getHessian(Point const & x, QuadraticFunction & result) const;
 
 	virtual void print(std::ostream &) const = 0;
 	virtual void clear();
